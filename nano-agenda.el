@@ -423,7 +423,7 @@ Finally, entry are sorted using nano-agenda-sort-predicate."
       (dolist (file (org-agenda-files))
         (dolist (entry (org-agenda-get-day-entries file org-date :timestamp :scheduled :deadline))
           (if (funcall nano-agenda-filter-predicate entry)
-              (add-to-list 'entries entry))))
+              (cl-pushnew entry entries :test #'equal))))
 
       ;; Sort entries
       (sort entries nano-agenda-sort-predicate)
